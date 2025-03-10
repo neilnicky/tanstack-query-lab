@@ -4,13 +4,19 @@ export function createTodoQueryOptions(on: boolean) {
   return queryOptions({
     queryKey: ["todos"],
     queryFn: getTodos,
-    enabled: on
+    enabled: on,
   });
 }
 
-const getTodos = async () => {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/comments?postId=${1}`
-  );
+const getTodos = async (): Promise<Todo[]> => {
+  const response = await fetch(`https://jsonplaceholder.typicode.com/todos`);
   return await response.json();
 };
+
+
+type Todo = {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}

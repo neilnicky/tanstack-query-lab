@@ -4,9 +4,7 @@ import { useState } from "react";
 import "./App.css";
 import { createTodoQueryOptions } from "./queryOptions/createTodoQueryOptions";
 
-
-
-function App() {
+function Type() {
   const [on, setOn] = useState(false);
   const { data, isPending } = useQuery(createTodoQueryOptions(on));
 
@@ -18,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export default Type;

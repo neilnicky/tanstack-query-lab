@@ -2,14 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
 import { useState } from "react";
 import "./App.css";
+import { createTodoQueryOptions } from "./queryOptions/createTodoQueryOptions";
 
 function App() {
   const [on, setOn] = useState(false);
-  const { data, isPending } = useQuery({
-    queryKey: ["todos"],
-    queryFn: getTodos,
-    enabled: on,
-  });
+  const { data, isPending } = useQuery(createTodoQueryOptions(on));
 
   return (
     <>
@@ -18,12 +15,5 @@ function App() {
     </>
   );
 }
-
-const getTodos = async () => {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/comments?postId=${1}`
-  );
-  return await response.json();
-};
 
 export default App;

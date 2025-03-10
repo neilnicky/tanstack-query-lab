@@ -1,28 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
-import "./App.css";
 import { Loader } from "lucide-react";
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const { data, isPending, refetch, error } = useQuery({
+  const [on, setOn] = useState(false);
+  const { data, isPending } = useQuery({
     queryKey: ["todos"],
     queryFn: getTodos,
+    enabled: on,
   });
-
-  if (error) {
-    alert("Something went wrong");
-  }
 
   return (
     <>
       <div>{isPending ? <Loader /> : JSON.stringify(data?.slice(0, 20))}</div>
-      <button onClick={() => refetch()}>refetch</button>
+      <button onClick={() => setOn(!on)}>Toggle</button>
     </>
   );
 }
 
 const getTodos = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const response = await fetch("http://jsonplaceholder.typicode.com/todos");
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/comments?postId=${1}`
+  );
   return await response.json();
 };
 

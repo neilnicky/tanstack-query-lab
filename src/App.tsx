@@ -1,19 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { Loader } from "lucide-react";
-import { useState } from "react";
 import "./App.css";
-import { createTodoQueryOptions } from "./queryOptions/createTodoQueryOptions";
+import Card from "./components/Card";
 
-function App() {
-  const [on, setOn] = useState(false);
-  const { data, isPending } = useQuery(createTodoQueryOptions(on));
-
+export default function App() {
   return (
     <>
-      <div>{isPending ? <Loader /> : JSON.stringify(data?.slice(0, 20))}</div>
-      <button onClick={() => setOn(!on)}>Toggle</button>
+      <Card />
     </>
   );
 }
-
-export default App;

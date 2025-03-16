@@ -4,8 +4,6 @@ import { useState } from "react";
 import "./App.css";
 import { createTodoQueryOptions } from "./queryOptions/createTodoQueryOptions";
 
-
-
 function App() {
   const [on, setOn] = useState(false);
   const { data, isPending } = useQuery(createTodoQueryOptions(on));

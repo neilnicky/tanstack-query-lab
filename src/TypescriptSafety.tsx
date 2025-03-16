@@ -1,17 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { Loader } from "lucide-react";
-import { useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import "./App.css";
 import { createTodoQueryOptions } from "./queryOptions/createTodoQueryOptions";
 
 function Type() {
-  const [on, setOn] = useState(false);
-  const { data, isPending } = useQuery(createTodoQueryOptions(on));
+  const { data } = useSuspenseQuery(createTodoQueryOptions(true));
 
   return (
     <>
-      <div>{isPending ? <Loader /> : JSON.stringify(data?.slice(0, 20))}</div>
-      <button onClick={() => setOn(!on)}>Toggle</button>
+      <div>{data[0]?.title}</div>
     </>
   );
 }

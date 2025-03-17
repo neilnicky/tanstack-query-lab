@@ -1,10 +1,10 @@
 import { queryOptions } from "@tanstack/react-query";
 
-export function createPostQueryOptions(on: boolean) {
+export function createPostQueryOptions() {
   return queryOptions({
     queryKey: ["posts"],
     queryFn: getPosts,
-    enabled: on,
+    enabled: true,
   });
 }
 

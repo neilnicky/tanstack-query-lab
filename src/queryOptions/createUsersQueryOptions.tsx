@@ -1,10 +1,10 @@
 import { queryOptions } from "@tanstack/react-query";
 
-export function createUsersQueryOptions(on: boolean) {
+export function createUsersQueryOptions() {
   return queryOptions({
     queryKey: ["users"],
     queryFn: getUsers,
-    enabled: on,
+    enabled: true,
   });
 }
 

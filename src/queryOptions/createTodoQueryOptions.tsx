@@ -1,10 +1,10 @@
 import { queryOptions } from "@tanstack/react-query";
 
-export function createTodoQueryOptions(on: boolean) {
+export function createTodoQueryOptions() {
   return queryOptions({
     queryKey: ["todos"],
     queryFn: getTodos,
-    enabled: on,
+    enabled: true,
   });
 }
 
@@ -14,10 +14,9 @@ const getTodos = async (): Promise<Todo[]> => {
   return await response.json();
 };
 
-
 type Todo = {
   userId: number;
   id: number;
   title: string;
   completed: boolean;
-}
+};

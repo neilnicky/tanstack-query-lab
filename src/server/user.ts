@@ -1,5 +1,10 @@
-export const getUser = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users/");
+"use server";
 
-  return res.json();
+interface User {
+  id: number;
+  name: string;
+}
+
+export const createUser = async (user: User) => {
+  console.log(user);
 };

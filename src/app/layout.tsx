@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-
-const queryClient = new QueryClient()
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,13 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-       
-      >
-        <QueryClientProvider client={queryClient}>
-        {children}
-           </QueryClientProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

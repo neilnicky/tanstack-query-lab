@@ -1,6 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 
-export function createPostQueryOptions() {
+export function createPostQueryOptions(randomId: number) {
   return queryOptions({
     queryKey: ["posts"],
     queryFn: getPosts,
@@ -8,9 +8,9 @@ export function createPostQueryOptions() {
   });
 }
 
-const getPosts = async (): Promise<Post[]> => {
+const getPosts = async (randomId: number): Promise<Post[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+  const response = await fetch(`https://jsonplaceholder.typicode.com/posts${randomId}`);
   return await response.json();
 };
 

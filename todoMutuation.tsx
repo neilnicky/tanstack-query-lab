@@ -1,8 +1,6 @@
-Here's a mutationOptions function for creating a new Todo using React Query's mutation:
-
 import { mutationOptions } from "@tanstack/react-query";
 
-export function createTodoMutationOptions() {
+export function getCreateTodoMutation() {
   return mutationOptions({
     mutationFn: async (newTodo: Omit<Todo, "id">): Promise<Todo> => {
       const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
@@ -14,7 +12,7 @@ export function createTodoMutationOptions() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to create Todo");
+        throw new Error("Error: Unable to create Todo");
       }
 
       return await response.json();
@@ -28,6 +26,3 @@ type Todo = {
   title: string;
   completed: boolean;
 };
-
-This mutation function sends a POST request to create a new Todo and can be used with useMutation(). Let me know if you need further modifications!
-
